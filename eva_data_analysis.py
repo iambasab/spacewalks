@@ -3,6 +3,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def read_json_to_dataframe(input_file):
+    '''
+    Read the data ffrom a JSON file to a pandas dataframe.
+    Clean the data by removing any rows where duration is missing
+
+    Args:
+        input_file(file or string): the file object or the path to the JSON file
+
+    Returns:
+        eva_df(pd.DataFrame):nThe cleaned data as a dataframe structure 
+
+    '''
     print(f'Reading JSON file {input_file.name}')
 
     # We now use pandas to read the input file and once again specify the encoding format as ascii
@@ -17,12 +28,36 @@ def read_json_to_dataframe(input_file):
 
 
 def write_dataframe_to_csv(df,output_file):
+    '''
+    Save the dataframe to a CSV file
+
+    Args:
+        df(pd.DataFrame): The dataframe object that is to be saved as csv file
+        output_file(file or string): the file object or the path to where the CSV file will be saved
+    
+    Returns:
+        None
+    '''
+
     print(f'Saving to CSV file {output_file.name}')
     # save the data to a csv file for later analysis
     df.to_csv(output_file, index=False, encoding='utf-8')
 
 
 def plot_cumulative_time_in_space(df, graph_file):
+    '''
+    Plot the processed data
+
+    Args:
+        df(pd.DataFrame): The dataframe that is to be plotted 
+        graph_file(file or string): The path to where the plot is to be saved as a .png file
+
+    Returns:
+        None
+    
+    '''
+
+
     df['duration_hours'] = df['duration'].str.split(":").apply(lambda x: int(x[0]) + int(x[1])/60)
     df['cumulative_time'] = df['duration_hours'].cumsum()
 
