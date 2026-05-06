@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def read_json_to_dataframe(input_file):
-    print(f'Reading JSON file {input_file}')
+    print(f'Reading JSON file {input_file.name}')
 
     # We now use pandas to read the input file and once again specify the encoding format as ascii
     # EVA stands for extra vehicular activity
@@ -17,16 +17,17 @@ def read_json_to_dataframe(input_file):
 
 
 def write_dataframe_to_csv(df,output_file):
-    print(f'Saving to CSV file {output_file}')
+    print(f'Saving to CSV file {output_file.name}')
     # save the data to a csv file for later analysis
     df.to_csv(output_file, index=False, encoding='utf-8')
 
+
 def plot_cumulative_time_in_space(df, graph_file):
-    eva_data['duration_hours'] = eva_data['duration'].str.split(":").apply(lambda x: int(x[0]) + int(x[1])/60)
-    eva_data['cumulative_time'] = eva_data['duration_hours'].cumsum()
+    df['duration_hours'] = df['duration'].str.split(":").apply(lambda x: int(x[0]) + int(x[1])/60)
+    df['cumulative_time'] = df['duration_hours'].cumsum()
 
     ''' Visualise the output'''
-    plt.plot(eva_data['date'], eva_data['cumulative_time'], 'ko-')
+    plt.plot(df['date'], df['cumulative_time'], 'ko-')
     plt.xlabel('Year')
     plt.ylabel('Total time spent in space to date (hours)')
     plt.tight_layout()
