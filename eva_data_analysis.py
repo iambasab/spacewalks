@@ -22,7 +22,7 @@ for i in range(375):
 ## Comment out this bit if you don't want the spreadsheet
 
 
-var_w=csv.writer(output_file)
+csv_writer=csv.writer(output_file)
 
 
 time = []
@@ -32,7 +32,7 @@ j=0
 for i in data:
     print(data[j])
     # and this bit
-    var_w.writerow(data[j].values())
+    csv_writer.writerow(data[j].values())
     if 'duration' in data[j].keys():
         var_time_1=data[j]['duration']
         if var_time_1 == '':
