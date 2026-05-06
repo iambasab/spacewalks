@@ -9,7 +9,7 @@ input_file = open('./eva-data.json', 'r', encoding='ascii')
 output_file = open('./eva-data.csv','w', encoding='utf-8')
 graph_file = 'cumulative_eva_graph.png'
 
-fieldnames = ("EVA #", "Country", "Crew    ", "Vehicle", "Date", "Duration", "Purpose")
+# fieldnames = ("EVA #", "Country", "Crew", "Vehicle", "Date", "Duration", "Purpose")
 
 data=[]
 
@@ -19,9 +19,8 @@ for i in range(375):
     print(line)
     data.append(json.loads(line[1:-1]))
 #data.pop(0)
+
 ## Comment out this bit if you don't want the spreadsheet
-
-
 csv_writer=csv.writer(output_file)
 
 
