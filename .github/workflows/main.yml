@@ -13,6 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    # Testing on 3.12 cos that's a platform requirement
     - name: Setup python
       uses: actions/setup-python@v5
       with:
